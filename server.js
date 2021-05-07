@@ -39,29 +39,21 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 app.post("/api/users", (req, res) => {
-  let movie = req.body.movie;
-  let name = req.body.name;
-  User.findOne({ movie }, (err, found) => {
-    if (err) return;
-    if (found) {
-      res.send("Movie Taken");
-    } else {
-      let newUser = new User({
-        movie,
-        name
-      });
-      newUser.save((err, save) => {
-        if (!err) {
-          let resObj = {};
-          resObj["name"] = save.name;
-          resObj["movie"] = save.movie;
-          resObj["id"] = save.id;
-          res.json(resObj);
-        }
-      });
+  let newUser = new User({
+    name: req.body.name,
+    movie: req.body.movie
+  })
+  newUser.save((error, savedUser) => {
+    if(!error){
+      let resObj = {}
+      resObj['name'] = savedUser.name
+      resObj['movie'] = savedUser.movie
+      resObj['_id'] = savedUser.id
+      res.json(resObj)
     }
-  });
-});
+  })
+})
+
 app.get("/api/users", (req, res) => {
   User.find({}, "name movie", (err, users) => {
     let arr = [];
