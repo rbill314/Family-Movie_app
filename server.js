@@ -25,8 +25,8 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-const userSchema = new mongoose.Schema({  
-  _id: { type: String, required: true},
+const userSchema = new mongoose.Schema({
+  id: { type: String, required: true },
   name: { type: String, required: true },
   movie: { type: String, required: true }
 });
@@ -34,25 +34,29 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 app.post("/api/users", (req, res) => {
-  const movie = req.body.movie;
-  const name = req.body.name
-  User.findOne({ movie: movie }, (err, found) => {
+  let movie = req.body.movie;
+  let name = req.body.name;
+  User.findOne({ movie }, (err, found) => {
     if (err) return;
     if (found) {
       res.send("Movie Taken");
     } else {
-      let newUser = new User({username: req.body.username})
-  newUser.save((error, savedUser) => {
-    if(!error){
-      let responseObject = {}
-      responseObject['username'] = savedUser.username
-      responseObject['_id'] = savedUser.id
-      res.json(responseObject)
+      let newUser = new User({
+        movie,
+        name
+      });
+      newUser.save((err, save) => {
+        if (!err) {
+          let resObj = {};
+          resObj["name"] = save.name;
+          resObj["movie"] = save.movie;
+          resObj["id"] = save.id;
+          res.json(resObj);
+        }
+      });
     }
-  })
-    }
+  });
 });
-})
 app.get("/api/users", (req, res) => {
   User.find({}, "name movie", (err, users) => {
     let arr = [];
