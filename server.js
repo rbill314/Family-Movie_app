@@ -31,31 +31,23 @@ if (mongoose.connection.readyState) {
 }
 
 
-const userSchema = new mongoose.Schema({
+const movieSchema = new mongoose.Schema({
   id: String,
-  name: String,
-  movie: String
+  name: {type: String, required: true},
+  movie: {type: String, required: true}
 });
 
-const User = mongoose.model("User", userSchema, 'User');
-
-async function run() {
-  
-User.watch().
-    on('change', data => console.log(new Date(), data));
-  console.log(new Date(), 'Inserting doc');
-  await User.create({});
-}
+const Movies = mongoose.model("Movies", movieSchema);
 
 app.post("/api/movies", (req, res) => {
   let name = req.body.name;
   let movie = req.body.movie;
-  User.findOne({ movie: movie }, (err, found) => {
+  Movies.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
       res.send("Movie Already Entered");
     } else {
-      const newUser = new User({
+      const newUser = new Movies({
         name: name,
         movie: movie
       });
@@ -72,7 +64,7 @@ app.post("/api/movies", (req, res) => {
 });
 
 app.get("/api/movies", (req, res) => {
-  User.find({}, "name movie", (err, users) => {
+  Movies.find({}, "name movie", (err, users) => {
     let arr = [];
     users.map(user => {
       arr.push(user);
