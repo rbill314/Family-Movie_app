@@ -4,7 +4,6 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-/*Connect to database*/
 mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -27,7 +26,8 @@ app.get("/", (req, res) => {
 });
 
 const userSchema = new mongoose.Schema({
-  _id: { type: String, required: true },
+  
+  _id: { type: String, required: true, default: shortId.generate },
   name: { type: String, required: true },
   movie: { type: String, required: true }
 });
@@ -36,21 +36,20 @@ const User = mongoose.model("User", userSchema);
 
 app.post("/api/users", (req, res) => {
   const movie = req.body.movie;
-  const name = req.body.name;
+  
   User.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
       res.send("Movie Taken");
     } else {
-      const newUser = new User({
+      const newUser = new User({        
         movie: movie
       });
       newUser.save((err, save) => {
         if (err) return;
         res.json({
           movie: movie,
-          name: name,
-          _id: save._id
+          name: save.name
         });
       });
     }
