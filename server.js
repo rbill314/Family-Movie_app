@@ -1,8 +1,18 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
 
 const URI =
   "mongodb+srv://whyme:" +
@@ -20,41 +30,48 @@ if (mongoose.connection.readyState) {
   console.log("WHACHA DO!!!");
 }
 
-app.use(cors());
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(express.static("public"));
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
 
 const userSchema = new mongoose.Schema({
-  id: { type: String, required: true },
-  name: { type: String, required: true },
-  movie: { type: String, required: true }
+  id: String,
+  name: String,
+  movie: String
 });
 
-const User = mongoose.model("User", userSchema);
+const User = mongoose.model("User", userSchema, 'User');
 
-app.post("/api/users", (req, res) => {
-  let newUser = new User({
-    name: req.body.name,
-    movie: req.body.movie
-  })
-  newUser.save((error, savedUser) => {
-    if(!error){
-      let resObj = {}
-      resObj['name'] = savedUser.name
-      resObj['movie'] = savedUser.movie
-      resObj['_id'] = savedUser.id
-      res.json(resObj)
+async function run() {
+  
+User.watch().
+    on('change', data => console.log(new Date(), data));
+  console.log(new Date(), 'Inserting doc');
+  await User.create({});
+}
+
+app.post("/api/movies", (req, res) => {
+  let name = req.body.name;
+  let movie = req.body.movie;
+  User.findOne({ movie: movie }, (err, found) => {
+    if (err) return;
+    if (found) {
+      res.send("Movie Already Entered");
+    } else {
+      const newUser = new User({
+        name: name,
+        movie: movie
+      });
+      newUser.save((err, save) => {
+        if (err) return;
+        res.json({
+          name: name,
+          movie: movie,
+          _id: save._id
+        });
+      });
     }
-  })
-})
+  });
+});
 
-app.get("/api/users", (req, res) => {
+app.get("/api/movies", (req, res) => {
   User.find({}, "name movie", (err, users) => {
     let arr = [];
     users.map(user => {
