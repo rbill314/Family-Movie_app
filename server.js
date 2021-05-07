@@ -18,7 +18,6 @@ fastify.register(require("point-of-view"), {
   }
 });
 
-/*Connect to database*/
 mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -39,19 +38,21 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("User", userSchema);
 
 fastify.post("/api/users", (req, res) => {
-  const username = req.body.username;
-  User.findOne({ username: username }, (err, found) => {
+  const movie = req.body.movie;
+  const name = req.body.name;
+  User.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
-      res.send("Username Taken");
+      res.send("Movie Taken");
     } else {
       const newUser = new User({
-        username: username
+        movie: movie
       });
       newUser.save((err, save) => {
         if (err) return;
         res.json({
-          username: username,
+          movie: movie,
+          name: name,
           _id: save._id
         });
       });
@@ -60,7 +61,7 @@ fastify.post("/api/users", (req, res) => {
 });
 
 fastify.get("/api/users", (req, res) => {
-  User.find({}, "username _id", (err, users) => {
+  User.find({}, "name movie", (err, users) => {
     let arr = [];
     users.map(user => {
       arr.push(user);
@@ -69,8 +70,7 @@ fastify.get("/api/users", (req, res) => {
   });
 });
 
-// Run the server and report out to the logs
-fastify.listen(process.env.PORT, function(err, address) {
+fastify.listen(process.env.PORT, (err, address) => {
   if (err) {
     fastify.log.error(err);
     process.exit(1);

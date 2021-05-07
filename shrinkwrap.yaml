@@ -3,6 +3,7 @@ dependencies:
   fastify-formbody: 5.0.0
   fastify-static: 4.0.1
   handlebars: 4.7.7
+  mongodb: 3.6.6
   mongoose: 5.12.7
   point-of-view: 4.14.0
 packages:
@@ -768,5 +769,6 @@ specifiers:
   fastify-formbody: ^5.0.0
   fastify-static: ^4.0.0
   handlebars: ^4.7.7
+  mongodb: ^3.6.6
   mongoose: ^5.12.7
   point-of-view: ^4.14.0
