@@ -1,5 +1,5 @@
 const path = require("path");
-
+const mongoose = require("mongoose");
 const fastify = require("fastify")({
   logger: true
 });
@@ -17,6 +17,20 @@ fastify.register(require("point-of-view"), {
     handlebars: require("handlebars")
   }
 });
+
+/*Connect to database*/
+mongoose.connect(process.env.URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+if (mongoose.connection.readyState) {
+  console.log("Holy Crap! It Connected");
+} else if (!mongoose.connection.readyState) {
+  console.log("WHACHA DO!!!");
+}
+
+
 
 const seo = require("./src/seo.json");
 if (seo.url === "glitch-default") {
