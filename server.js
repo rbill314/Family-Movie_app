@@ -1,23 +1,10 @@
-const path = require("path");
+const express = require("express");
+const app = express();
+const cors = require("cors");
 const mongoose = require("mongoose");
-const fastify = require("fastify")({
-  logger: true
-});
+const bodyParser = require("body-parser");
 
-fastify.register(require("fastify-static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/" // optional: default '/'
-});
-
-fastify.register(require("fastify-formbody"));
-
-// point-of-view is a templating manager for fastify
-fastify.register(require("point-of-view"), {
-  engine: {
-    handlebars: require("handlebars")
-  }
-});
-
+/*Connect to database*/
 mongoose.connect(process.env.URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -29,6 +16,16 @@ if (mongoose.connection.readyState) {
   console.log("WHACHA DO!!!");
 }
 
+app.use(cors());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.use(express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
+
 const userSchema = new mongoose.Schema({
   _id: { type: String, required: true },
   name: { type: String, required: true },
@@ -37,7 +34,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-fastify.post("/api/users", (req, res) => {
+app.post("/api/users", (req, res) => {
   const movie = req.body.movie;
   const name = req.body.name;
   User.findOne({ movie: movie }, (err, found) => {
@@ -60,7 +57,7 @@ fastify.post("/api/users", (req, res) => {
   });
 });
 
-fastify.get("/api/users", (req, res) => {
+app.get("/api/users", (req, res) => {
   User.find({}, "name movie", (err, users) => {
     let arr = [];
     users.map(user => {
@@ -70,10 +67,6 @@ fastify.get("/api/users", (req, res) => {
   });
 });
 
-fastify.listen(process.env.PORT, (err, address) => {
-  if (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
-  fastify.log.info(`server listening on ${address}`);
+const listener = app.listen(process.env.PORT || 3000, () => {
+  console.log("Shhhhh!!!! Spying on port " + listener.address().port);
 });
