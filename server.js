@@ -30,60 +30,43 @@ if (mongoose.connection.readyState) {
   console.log("WHACHA DO!!!");
 }
 
-
-
-const seo = require("./src/seo.json");
-if (seo.url === "glitch-default") {
-  seo.url = `https://${process.env.PROJECT_DOMAIN}.glitch.me`;
-}
-
-// Our home page route, this pulls from src/pages/index.hbs
-fastify.get("/", function(request, reply) {
-  // params is an object we'll pass to our handlebars template
-  let params = { seo: seo };
-  // check and see if someone asked for a random color
-  if (request.query.randomize) {
-    // we need to load our color data file, pick one at random, and add it to the params
-    const colors = require("./src/colors.json");
-    const allColors = Object.keys(colors);
-    let currentColor = allColors[(allColors.length * Math.random()) << 0];
-    params = {
-      color: colors[currentColor],
-      colorError: null,
-      seo: seo
-    };
-  }
-  reply.view("/src/pages/index.hbs", params);
+const userSchema = new mongoose.Schema({
+  _id: { type: String, required: true },
+  name: { type: String, required: true },
+  movie: { type: String, required: true }
 });
 
-// A POST route to handle and react to form submissions 
-fastify.post("/", function(request, reply) {
-  let params = { seo: seo };
-  // the request.body.color is posted with a form submission
-  let color = request.body.color;
-  // if it's not empty, let's try to find the color
-  if (color) {
-    // load our color data file
-    const colors = require("./src/colors.json");
-    // take our form submission, remove whitespace, and convert to lowercase
-    color = color.toLowerCase().replace(/\s/g, "");
-    // now we see if that color is a key in our colors object
-    if (colors[color]) {
-      // found one!
-      params = {
-        color: colors[color],
-        colorError: null,
-        seo: seo
-      };
+const User = mongoose.model("User", userSchema);
+
+fastify.post("/api/users", (req, res) => {
+  const username = req.body.username;
+  User.findOne({ username: username }, (err, found) => {
+    if (err) return;
+    if (found) {
+      res.send("Username Taken");
     } else {
-      // try again.
-      params = {
-        colorError: request.body.color,
-        seo: seo
-      };
+      const newUser = new User({
+        username: username
+      });
+      newUser.save((err, save) => {
+        if (err) return;
+        res.json({
+          username: username,
+          _id: save._id
+        });
+      });
     }
-  }
-  reply.view("/src/pages/index.hbs", params);
+  });
+});
+
+fastify.get("/api/users", (req, res) => {
+  User.find({}, "username _id", (err, users) => {
+    let arr = [];
+    users.map(user => {
+      arr.push(user);
+    });
+    res.json(arr);
+  });
 });
 
 // Run the server and report out to the logs
