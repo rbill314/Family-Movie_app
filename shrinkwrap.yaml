@@ -3,6 +3,7 @@ dependencies:
   cors: 2.8.5
   dotenv: 9.0.0
   express: 4.17.1
+  mongodb: 3.6.6
   mongoose: 5.12.7
 packages:
   /@types/bson/4.0.3:
@@ -610,4 +611,5 @@ specifiers:
   cors: ^2.8.5
   dotenv: ^9.0.0
   express: ^4.17.1
+  mongodb: ^3.6.6
   mongoose: ^5.12.7
