@@ -40,13 +40,13 @@
         </tr>
         <tr>
           <td>
-            <form action="/api/movies" method="get">
+            <form id="movieForm" action="/api/movies" method="get">
               <h3>User Catalogue</h3>
               <input type="submit" value="View" />
+              <!--<p id="result"></p>-->
+              <code id="jsonResult"></code>
             </form>
           </td>
-          <p id="result"></p>
-          <code id="jsonResult"></code>
         </tr>
       </table>
     </div>
@@ -56,21 +56,20 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      <script>
-        $(function() {
-          $("#convertForm").submit(function(event) {
-            event.preventDefault();
-            $.ajax({
-              url: "/api/convert",
-              type: "get",
-              data: $("#convertForm").serialize(),
-              success: function(data) {
-                $("#result").text(data.string || data);
-                $("#jsonResult").text(JSON.stringify(data));
-              }
-            });
+      $(function() {
+        $("#movieForm").submit(e => {
+          e.preventDefault();
+          $.ajax({
+            url: "/api/movies",
+            type: "get",
+            data: $("#movieForm").serialize(),
+            success: d => {
+              $("#result").text(d.string || d);
+              $("#jsonResult").text(JSON.stringify(d));
+            }
           });
         });
+      });
     </script>
   </body>
 </html>
