@@ -45,7 +45,8 @@ app.post("/api/movies", (req, res) => {
   Movies.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
-      res.send("Movie Already Entered");
+      res.redirect("back"),
+        res.alert("Movie Already Entered")
     } else {
       const newUser = new Movies({
         name: name,
@@ -65,7 +66,11 @@ app.get("/api/movies", (req, res) => {
   Movies.find(movie, { _id: 0, __v: 0 }, (err, movies) => {
     if (err) return;
     if (movies) {
-      res.json({});
+      let arr = [];
+      movies.map(movies => {
+        arr.push(movies);
+      });
+      res.json(arr);
     }
   });
 });
