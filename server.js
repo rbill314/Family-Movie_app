@@ -54,20 +54,25 @@ app.post("/api/movies", (req, res) => {
       });
       newUser.save((err, save) => {
         if (err) return;
-        res.redirect('back');
+        res.redirect("back");
       });
     }
   });
 });
 
 app.get("/api/movies", (req, res) => {
-  Movies.find({}, "name movie", (err, users) => {
-    let arr = [];
-    users.map(user => {
-      arr.push(user);
-    });
-    res.json(arr);
-  });
+  let movie = req.body.movie;
+  Movies.find(
+    movie,
+    { _id: 0, __v: 0 },
+    (err, users) => {
+      let arr = [];
+      users.map(user => {
+        arr.push(user);
+      });
+      res.json(arr);
+    }
+  );
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
