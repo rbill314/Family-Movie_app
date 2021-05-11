@@ -24,12 +24,24 @@
         </tr>
         <tr>
           <td>
-            <form classaction="/api/movies" method="post">
+            <form class="form1" action="/api/movies" method="post">
               <h3>Enter name and movie</h3>
-              <input class="text" id="name" type="text" name="name" placeholder="Name*" />
-              <input class="text" id="movie" type="text" name="movie" placeholder="Movie*" />
               <input
-                     class="text" 
+                class="text"
+                id="name"
+                type="text"
+                name="name"
+                placeholder="Name*"
+              />
+              <input
+                class="text"
+                id="movie"
+                type="text"
+                name="movie"
+                placeholder="Movie*"
+              />
+              <input
+                class="text"
                 id="where"
                 type="text"
                 name="where"
@@ -41,16 +53,20 @@
         </tr>
         <tr>
           <td>
-            <form class="text" id="movieForm" action="/api/movies" method="get">
+            <form
+              class="form2"
+              id="movieForm"
+              action="/api/movies"
+              method="get"
+            >
               <h3>User Catalogue</h3>
               <input class="submit" type="submit" value="View" />
             </form>
           </td>
         </tr>
-
         <tr>
           <td>
-            <form>
+            <form class="form3">
               <input class="submit" type="submit" value="Reset" />
               <code class="code" id="jsonResult"></code>
             </form>
