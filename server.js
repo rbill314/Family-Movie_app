@@ -3,9 +3,6 @@ const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const ejs = require("ejs");
-
-app.set("view engine", "ejs");
 
 app.use(cors());
 
@@ -65,8 +62,11 @@ app.post("/api/movies", (req, res) => {
 
 app.get("/api/movies", (req, res) => {
   let movie = req.body.movie;
-  Movies.find(movie, { _id: 0, __v: 0 }, (req, res) => {
-    res.render("index.ejs", { movie });
+  Movies.find(movie, { _id: 0, __v: 0 }, (err, movies) => {
+    if (err) return;
+    if (movies) {
+      res.json({});
+    }
   });
 });
 
