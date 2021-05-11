@@ -54,7 +54,7 @@ app.post("/api/movies", (req, res) => {
       });
       newUser.save((err, save) => {
         if (err) return;
-        res.redirect("./views/index.html");
+        res.sendFile("/" + "/views/index.html");
       });
     }
   });
