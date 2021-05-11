@@ -37,7 +37,7 @@ p {
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
-  transform: translate(50%, 60%);
+  transform: translate(50%, 35%);
 }
 
 input {

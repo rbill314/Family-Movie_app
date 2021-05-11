@@ -17,7 +17,10 @@
   <body>
     <center>
       <div class="container">
+        <table>
+          <tr>
         <h1>Movies to watch</h1>
+          </tr><tr>
         <form class="form1" action="/api/movies" method="post">
           <h3>Enter name and movie</h3>
           <input id="name" type="text" name="name" placeholder="Name*" />
@@ -30,10 +33,12 @@
           />
           <input type="submit" value="Submit" />
         </form>
+          </tr>
         <form class="form2" action="/api/movies" method="get">
           <h3>User Catalogue</h3>
           <input type="submit" value="View" />
         </form>
+        </table>
       </div>
     </center>
   </body>
