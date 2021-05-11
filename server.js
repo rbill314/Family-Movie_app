@@ -65,8 +65,9 @@ app.get("/api/movies", (req, res) => {
   let result = req.body.result;
   Movies.find(movie, { _id: 0, __v: 0 }, (err, users) => { 
     if (err) return;
-    res.json('result');  
+    res.send(result);  
 });
+})
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Shhhhh!!!! Spying on port " + listener.address().port);

@@ -27,28 +27,11 @@
           <input type="submit" value="Submit" />
         </form>
 
-        <form id="movieForm" action="/api/movies" method="get">
+        <form action="/api/movies" method="get">
           <h3>User Catalogue</h3>
           <input type="submit" value="View" />
-          <p id="result" name="result"></p>
-          <code id="jsonResult"></code>
+          <output name="result" id="result" />
         </form>
-        <script>
-          $(function() {
-            $("#movieForm").submit(e => {
-              e.preventDefault();
-              $.ajax({
-                url: "/api/movies",
-                type: "get",
-                data: $("#movieForm").serialize(),
-                success: data => {
-                  $("#result").text(data.string || data);
-                  $("#jsonResult").text(JSON.stringify(data));
-                }
-              });
-            });
-          });
-        </script>
       </div>
     </center>
   </body>
