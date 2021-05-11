@@ -62,18 +62,13 @@ app.post("/api/movies", (req, res) => {
 
 app.get("/api/movies", (req, res) => {
   let movie = req.body.movie;
-  Movies.find(movie, { _id: 0, __v: 0 }, (err, movies) => {
-    if (err) return;
-    if (movies) {
-      let arr = [];
-      movies.map(movies => {
-        arr.push(movies);
-      });
-      res.json(arr);
+  Movies.find({}, (err, mov) => {
+    if(!err){
+      res.json(arrayOfUsers)
     }
-  });
-});
-
+  })
+  
+})
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Shhhhh!!!! Spying on port " + listener.address().port);
 });

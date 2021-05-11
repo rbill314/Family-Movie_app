@@ -1,12 +1,7 @@
 body {
   height: auto;
   font-family: sans-serif;
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 1) 0%,
-    rgba(0, 23, 255, 1) 0%,
-    rgba(34, 184, 186, 1) 63%
-  );
+  background: #b2feff
 }
 
 h1 {
@@ -29,7 +24,7 @@ h1 {
   text-align: center;
   display: block;
   margin-left: 40vw;
-  margin-top: 5vh;
+  margin-top: 1vh;
 }
 
 .form2 {
@@ -45,7 +40,7 @@ h1 {
   text-align: center;
   display: block;
   margin-left: 40vw;
-  margin-top: 5vh;
+  margin-top: 1vh;
 }
 
 .form3 {
@@ -62,9 +57,8 @@ h1 {
   text-align: center;
   display: block;
   margin-left: 40vw;
-  margin-top: 5vh;
-  overflow-y: scroll;
-  overflow-x: hidden
+  margin-top: 1vh;
+  overflow: auto
 }
 
 .submit {
