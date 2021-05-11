@@ -45,7 +45,7 @@ app.post("/api/movies", (req, res) => {
   Movies.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
-      res.send("Movie Already Entered");
+      res.send("Movie Already Entered")
     } else {
       const newUser = new Movies({
         name: name,
@@ -62,7 +62,7 @@ app.post("/api/movies", (req, res) => {
 
 app.get("/api/movies", (req, res) => {
   let movie = req.body.movie;
-  Movies.find().pretty().toArray(movie, { _id: 0, __v: 0 }, (err, movies) => {
+  Movies.find(movie, { _id: 0, __v: 0 }, (err, movies) => {
     if (err) return;
     if (movies) {
       let arr = [];

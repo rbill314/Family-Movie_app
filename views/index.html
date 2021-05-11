@@ -16,7 +16,7 @@
 
   <body>
     <div class="container">
-      <table class="centered">
+      <table class="Absolute-Center">
         <tr>
           <th>
             <h1>Movies to watch</h1>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
           <td>
-            <form class="form1" action="/api/movies" method="post">
+            <form action="/api/movies" method="post">
               <h3>Enter name and movie</h3>
               <input
                 class="text"
@@ -53,12 +53,7 @@
         </tr>
         <tr>
           <td>
-            <form
-              class="form2"
-              id="movieForm"
-              action="/api/movies"
-              method="get"
-            >
+            <form id="movieForm" action="/api/movies" method="get">
               <h3>User Catalogue</h3>
               <input class="submit" type="submit" value="View" />
             </form>
@@ -66,7 +61,7 @@
         </tr>
         <tr>
           <td>
-            <form class="form3">
+            <form>
               <input class="submit" type="submit" value="Reset" />
               <code class="code" id="jsonResult"></code>
             </form>
