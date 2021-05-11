@@ -6,7 +6,6 @@
   position: fixed;
   top: 40%;
   left: 50%;
-  /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
@@ -39,7 +38,7 @@ form {
     rgba(253, 187, 45, 1) 100%
   );
   display: inline-block;
-  height: auto;
+  height: 100%;
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
@@ -73,5 +72,5 @@ code {
   font-family: monospace;
   font-size: 1.2em;
   background-color: #FFFEC4;
-  padding: 2px;
+  padding: 2px;  
 }
