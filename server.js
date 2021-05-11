@@ -33,7 +33,8 @@ if (mongoose.connection.readyState) {
 const movieSchema = new mongoose.Schema({
   id: String,
   name: { type: String, required: true },
-  movie: { type: String, required: true }
+  movie: { type: String, required: true },
+  where: { type: String, required: true }
 });
 
 const Movies = mongoose.model("Movies", movieSchema);
