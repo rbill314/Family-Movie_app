@@ -38,7 +38,7 @@ form {
     rgba(253, 187, 45, 1) 100%
   );
   display: inline-block;
-  height: 100%;
+  height: auto;
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
@@ -69,8 +69,7 @@ input[type="submit"]:hover {
 }
 
 code {
-  font-family: monospace;
+  font-family: monospace;  
   font-size: 1.2em;
-  background-color: #FFFEC4;
-  padding: 2px;  
+  overflow: auto
 }
