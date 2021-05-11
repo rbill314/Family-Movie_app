@@ -14,18 +14,41 @@
     <center>
       <div class="container">
         <h1>Movies to watch</h1>
-        <form action="/api/movies" method="post">
+        <form id="movieForm" action="/api/movies" method="post">
           <h3>Enter name and movie</h3>
           <input id="name" type="text" name="name" placeholder="Name*" />
           <input id="movie" type="text" name="movie" placeholder="Movie*" />
-          <input id="where" type="text" name="where" placeholder="Where to Watch it*" />
+          <input
+            id="where"
+            type="text"
+            name="where"
+            placeholder="Where to Watch it*"
+          />
           <input type="submit" value="Submit" />
+          <p id="result"></p>
+          <code id="jsonResult"></code>
         </form>
 
         <form action="/api/movies" method="get">
           <h3>User Catalogue</h3>
           <input type="submit" value="View" />
         </form>
+        <script>
+          $(function() {
+            $("#movieForm").submit(e => {
+              e.preventDefault();
+              $.ajax({
+                url: "/api/movies",
+                type: "post",
+                data: $("#movieForm").serialize(),
+                success: data => {
+                  $("#result").text(data.string || data);
+                  $("#jsonResult").text(JSON.stringify(data));
+                }
+              });
+            });
+          });
+        </script>
       </div>
     </center>
   </body>
