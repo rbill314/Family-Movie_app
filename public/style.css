@@ -1,5 +1,5 @@
 body {
-  height: 100vh;
+  height: auto;
   font-family: sans-serif;
   background: linear-gradient(
     0deg,
@@ -11,10 +11,9 @@ body {
 
 h1 {
   font-weight: bold;
-  position: fixed;
-  top: 5%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  margin-left: 40vw;
+  margin-top: 5vh;
 }
 
 .form1 {
@@ -28,10 +27,9 @@ h1 {
   width: 20vw;
   border-radius: 5px;
   text-align: center;
-  position: fixed;
-  top: 35%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  margin-left: 40vw;
+  margin-top: 5vh;
 }
 
 .form2 {
@@ -45,10 +43,9 @@ h1 {
   width: 20vw;
   border-radius: 5px;
   text-align: center;
-  position: fixed;
-  top: 65%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  display: block;
+  margin-left: 40vw;
+  margin-top: 5vh;
 }
 
 .form3 {
@@ -63,11 +60,11 @@ h1 {
   max-width: 20vw;
   border-radius: 5px;
   text-align: center;
-  position: fixed;
-  top: 83%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  overflow: auto;
+  display: block;
+  margin-left: 40vw;
+  margin-top: 5vh;
+  overflow-y: scroll;
+  overflow-x: hidden
 }
 
 .submit {
