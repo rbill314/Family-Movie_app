@@ -1,14 +1,11 @@
-/*###Desktops, big landscape tablets and laptops(Large, Extra large)####*/
 @media screen and (min-width: 1024px){
 /*Style*/
 }
 
-/*###Tablet(medium)###*/
 @media screen and (min-width : 768px) and (max-width : 1023px){
 /*Style*/
 }
 
-/*### Smartphones (portrait and landscape)(small)### */
 @media screen and (min-width : 0px) and (max-width : 767px){
 /*Style*/
 }
@@ -33,7 +30,18 @@ p {
   max-width: 900px;
 }
 
-form {
+.form1 {
+  margin-bottom: 25px;
+  height: 20%;
+  padding: 15px;
+  background-color: #87D37c;
+  display: inline-block;
+  width: 100%;
+  max-width: 340px;
+  border-radius: 5px;
+}
+
+.form2 {
   margin-bottom: 25px;
   padding: 15px;
   background-color: #87D37c;

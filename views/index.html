@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0"/>
   <head>
     <title>Movie List</title>
+    <meta
+      name="viewport"
+      content="width=device-width,height=device-height,initial-scale=1.0"
+    />
     <link
       href="https://fonts.googleapis.com/css?family=Roboto"
       rel="stylesheet"
@@ -15,7 +18,7 @@
     <center>
       <div class="container">
         <h1>Movies to watch</h1>
-        <form action="/api/movies" method="post">
+        <form class="form1" action="/api/movies" method="post">
           <h3>Enter name and movie</h3>
           <input id="name" type="text" name="name" placeholder="Name*" />
           <input id="movie" type="text" name="movie" placeholder="Movie*" />
@@ -27,7 +30,7 @@
           />
           <input type="submit" value="Submit" />
         </form>
-        <form action="/api/movies" method="get">
+        <form class="form2" action="/api/movies" method="get">
           <h3>User Catalogue</h3>
           <input type="submit" value="View" />
         </form>
