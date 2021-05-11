@@ -63,13 +63,12 @@ app.post("/api/movies", (req, res) => {
   });
 });
 
-app.get('/', (req, res) => {
-  mongoose.collection('quotes').find().toArray()
-    .then(results => {
-      res.render('index.ejs', { quotes: results })
-    })
-    .catch(/* ... */)
-})
+app.get("/api/movies", (req, res) => {
+  let movie = req.body.movie;
+  Movies.find(movie, { _id: 0, __v: 0 }, (req, res) => {
+    res.render("index.ejs", { movie });
+  });
+});
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log("Shhhhh!!!! Spying on port " + listener.address().port);
