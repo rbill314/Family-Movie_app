@@ -14,7 +14,7 @@
     <center>
       <div class="container">
         <h1>Movies to watch</h1>
-        <form id="movieForm" action="/api/movies" method="post">
+        <form action="/api/movies" method="post">
           <h3>Enter name and movie</h3>
           <input id="name" type="text" name="name" placeholder="Name*" />
           <input id="movie" type="text" name="movie" placeholder="Movie*" />
@@ -25,13 +25,13 @@
             placeholder="Where to Watch it*"
           />
           <input type="submit" value="Submit" />
-          <p id="result"></p>
-          <code id="jsonResult"></code>
         </form>
 
-        <form action="/api/movies" method="get">
+        <form id="movieForm" action="/api/movies" method="get">
           <h3>User Catalogue</h3>
           <input type="submit" value="View" />
+          <p id="result" name="result"></p>
+          <code id="jsonResult"></code>
         </form>
         <script>
           $(function() {
@@ -39,7 +39,7 @@
               e.preventDefault();
               $.ajax({
                 url: "/api/movies",
-                type: "post",
+                type: "get",
                 data: $("#movieForm").serialize(),
                 success: data => {
                   $("#result").text(data.string || data);

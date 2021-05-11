@@ -62,17 +62,10 @@ app.post("/api/movies", (req, res) => {
 
 app.get("/api/movies", (req, res) => {
   let movie = req.body.movie;
-  Movies.find(
-    movie,
-    { _id: 0, __v: 0 },
-    (err, users) => {
-      let arr = [];
-      users.map(user => {
-        arr.push(user);
-      });
-      res.json(arr);
-    }
-  );
+  let result = req.body.result;
+  Movies.find(movie, { _id: 0, __v: 0 }, (err, users) => { 
+    if (err) return;
+    res.json('result');  
 });
 
 const listener = app.listen(process.env.PORT || 3000, () => {
