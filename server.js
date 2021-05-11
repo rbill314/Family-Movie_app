@@ -30,11 +30,10 @@ if (mongoose.connection.readyState) {
   console.log("WHACHA DO!!!");
 }
 
-
 const movieSchema = new mongoose.Schema({
   id: String,
-  name: {type: String, required: true},
-  movie: {type: String, required: true}
+  name: { type: String, required: true },
+  movie: { type: String, required: true }
 });
 
 const Movies = mongoose.model("Movies", movieSchema);
@@ -42,6 +41,7 @@ const Movies = mongoose.model("Movies", movieSchema);
 app.post("/api/movies", (req, res) => {
   let name = req.body.name;
   let movie = req.body.movie;
+  let where = req.body.where;
   Movies.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
@@ -49,13 +49,15 @@ app.post("/api/movies", (req, res) => {
     } else {
       const newUser = new Movies({
         name: name,
-        movie: movie
+        movie: movie,
+        where: where
       });
       newUser.save((err, save) => {
         if (err) return;
         res.json({
           name: name,
           movie: movie,
+          where: where,
           _id: save._id
         });
       });
