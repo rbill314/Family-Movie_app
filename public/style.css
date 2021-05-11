@@ -24,7 +24,8 @@ h1 {
     rgba(34, 193, 195, 1) 0%,
     rgba(253, 187, 45, 1) 100%
   );
-  width: 50vw;
+  height: auto;
+  width: 20vw;
   border-radius: 5px;
   text-align: center;
   position: fixed;
@@ -40,9 +41,10 @@ h1 {
     rgba(34, 193, 195, 1) 0%,
     rgba(253, 187, 45, 1) 100%
   );
-  width: 50vw;
+  height: auto;
+  width: 20vw;
   border-radius: 5px;
-  text-align: center; 
+  text-align: center;
   position: fixed;
   top: 65%;
   left: 50%;
@@ -56,14 +58,16 @@ h1 {
     rgba(34, 193, 195, 1) 0%,
     rgba(253, 187, 45, 1) 100%
   );
-  width: 50vw;
+  height: auto;
+  width: 20vw;
+  max-width: 20vw;
   border-radius: 5px;
   text-align: center;
-  position:fixed;
+  position: fixed;
   top: 83%;
   left: 50%;
   transform: translate(-50%, -50%);
-  overflow: auto
+  overflow: auto;
 }
 
 .submit {
