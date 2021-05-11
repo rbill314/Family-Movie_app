@@ -15,31 +15,38 @@
   </head>
 
   <body>
-    <center>
-      <div class="container">
-        <table>
-          <tr>
-        <h1>Movies to watch</h1>
-          </tr><tr>
-        <form class="form1" action="/api/movies" method="post">
-          <h3>Enter name and movie</h3>
-          <input id="name" type="text" name="name" placeholder="Name*" />
-          <input id="movie" type="text" name="movie" placeholder="Movie*" />
-          <input
-            id="where"
-            type="text"
-            name="where"
-            placeholder="Where to Watch it*"
-          />
-          <input type="submit" value="Submit" />
-        </form>
-          </tr>
-        <form class="form2" action="/api/movies" method="get">
-          <h3>User Catalogue</h3>
-          <input type="submit" value="View" />
-        </form>
-        </table>
-      </div>
-    </center>
+    <div class="container">
+      <table>
+        <tr>
+          <th>
+            <h1>Movies to watch</h1>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <form action="/api/movies" method="post">
+              <h3>Enter name and movie</h3>
+              <input id="name" type="text" name="name" placeholder="Name*" />
+              <input id="movie" type="text" name="movie" placeholder="Movie*" />
+              <input
+                id="where"
+                type="text"
+                name="where"
+                placeholder="Where to Watch it*"
+              />
+              <input type="submit" value="Submit" />
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <form action="/api/movies" method="get">
+              <h3>User Catalogue</h3>
+              <input type="submit" value="View" />
+            </form>
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>

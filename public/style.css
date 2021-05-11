@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family:sans-serif;
+  font-family: sans-serif;
   margin: 25px;
   color: #222;
   background-color: #f5f5;
@@ -11,33 +11,21 @@ body {
 
 h1 {
   font-weight: bold;
-  
 }
 
 p {
   max-width: 900px;
 }
 
-.form1 {
+form {
   padding: 15px;
   background-color: #87D37c;
   display: inline-block;
-  height:auto;
+  height: auto;
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
-  transform: translate(50%, 5%);
-}
-
-.form2 {
-  padding: 15px;
-  background-color: #87D37c;
-  display: inline-block;
-  height:auto;
-  width: 100%;
-  max-width: 340px;
-  border-radius: 5px;
-  transform: translate(50%, 35%);
+  text-align: center;
 }
 
 input {
@@ -50,7 +38,7 @@ input {
   font-size: 16px;
 }
 
-input[type=submit] {
+input[type="submit"] {
   font-size: 16px;
   border-radius: 3px;
   background-color: #E4F1FE;
@@ -59,7 +47,7 @@ input[type=submit] {
   cursor: pointer;
 }
 
-input[type=submit]:hover {
+input[type="submit"]:hover {
   background-color: #FFFEC4;
 }
 
