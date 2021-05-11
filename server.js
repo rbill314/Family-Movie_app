@@ -53,13 +53,15 @@ app.post("/api/movies", (req, res) => {
         where: where
       });
       newUser.save((err, save) => {
-        if (err) return;
-        res.json({
-          name: name,
-          movie: movie,
-          where: where,
-          _id: save._id
-        });
+        if (!err)
+          res
+            .json({
+              name: name,
+              movie: movie,
+              where: where,
+              _id: save._id
+            })
+            .redirect("back");
       });
     }
   });
