@@ -45,8 +45,7 @@ app.post("/api/movies", (req, res) => {
   Movies.findOne({ movie: movie }, (err, found) => {
     if (err) return;
     if (found) {
-      return
-      res.redirect("back");
+      res.send("Movie Already Entered");
     } else {
       const newUser = new Movies({
         name: name,
