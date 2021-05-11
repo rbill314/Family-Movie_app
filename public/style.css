@@ -4,17 +4,23 @@
 
 .centered {
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
 }
 
 body {
+  height: 92vh;
   font-family: sans-serif;
   margin: 25px;
   color: #222;
-  background-color: #f5f5;
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(0, 23, 255, 1) 0%,
+    rgba(34, 184, 186, 1) 63%
+  );
 }
 
 h1 {
@@ -27,7 +33,11 @@ p {
 
 form {
   padding: 15px;
-  background-color: #87D37c;
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
   display: inline-block;
   height: auto;
   width: 100%;
