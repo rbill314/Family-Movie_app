@@ -1,14 +1,7 @@
-.centered {
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 body {
   height: 100vh;
   font-family: sans-serif;
-  margin: 25px;
   background: linear-gradient(
     0deg,
     rgba(34, 193, 195, 1) 0%,
@@ -30,11 +23,17 @@ form {
   );
   width: 50vw;
   border-radius: 5px;
+  text-align: center;  
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.submit {
   text-align: center;
 }
-.submit {
-  text-align: center
-}
+
 input {
   margin-bottom: 10px;
   padding: 3px;
@@ -45,7 +44,7 @@ input {
 }
 
 input[type="submit"] {
-  font-size: 16px;  
+  font-size: 16px;
   border-radius: 3px;
   background-color: #E4F1FE;
   border: 1px solid grey;
