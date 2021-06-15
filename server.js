@@ -1,80 +1,44 @@
-const express = require("express");
-const app = express();
-const cors = require("cors");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+'use strict'
 
-app.use(cors());
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+require('dotenv').config()
+const app = express()
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const apiRoutes = require('./routes/api.js')
 
-app.use(express.static("public"));
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
+app.use(cors())
 
-const URI =
-  "mongodb+srv://whyme:" +
-  process.env.URI +
-  "@cluster0.tffyh.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-mongoose.connect(URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+require("./db-connection")
+const {
+  connection
+} = require("./db-connection")
 
-if (mongoose.connection.readyState) {
-  console.log("Holy Crap! It Connected");
-} else if (!mongoose.connection.readyState) {
-  console.log("WHACHA DO!!!");
-}
+app.use('/public', express.static(process.cwd() + '/public'))
 
-const movieSchema = new mongoose.Schema({
-  id: String,
-  name: { type: String, required: true },
-  movie: { type: String, required: true },
-  where: { type: String, required: true }
-});
-
-const Movies = mongoose.model("Movies", movieSchema);
-
-app.post("/api/movies", (req, res) => {
-  let name = req.body.name;
-  let movie = req.body.movie;
-  let where = req.body.where;
-  Movies.findOne({ movie: movie }, (err, found) => {
-    if (err) return;
-    if (found) {
-      res.send("Movie Already Entered")
-    } else {
-      const newUser = new Movies({
-        name: name,
-        movie: movie,
-        where: where
-      });
-      newUser.save((err, save) => {
-        if (err) return;
-        res.redirect("back");
-      });
-    }
+app.route('/')
+  .get(function (req, res) {
+    res.sendFile(process.cwd() + '/views/index.html')
   });
+
+apiRoutes(app)
+
+app.use(function (req, res, next) {
+  res.status(200)
+    .type('text')
+    .send('Not Found')
 });
 
-app.get("/api/movies", (req, res) => {
-  let movie = req.body.movie;
-  Movies.find(movie, { _id: 0, __v: 0 }, (err, movies) => {
-    if (err) return;
-    if (movies) {
-      let arr = [];
-      movies.map(movies => {
-        arr.push(movies);
-      });
-      res.json(arr);
-    }
-  })
-});
+app.listen(connection, () => {
+  console.log("Holy Crap! It Connected")
+})
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log("Shhhhh!!!! Spying on port " + listener.address().port);
-});
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Shhhhh!!!! Spying on port " + process.env.PORT)
+})

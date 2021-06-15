@@ -1,96 +1,99 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Movie List</title>
-    <meta
-      name="viewport"
-      content="width=device-width,height=device-height,initial-scale=1.0"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link href="style.css" rel="stylesheet" type="text/css" />
-  </head>
 
-  <body>
-    <center>
-    <div class="container">
-      <table class="center">
-        <tr>
-          <th>
-            <h1>Movies to watch</h1>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <form action="/api/movies" method="post">
-              <h3>Enter name and movie</h3>
-              <input
-                class="text"
-                id="name"
-                type="text"
-                name="name"
-                placeholder="Name*"
-              />
-              <input
-                class="text"
-                id="movie"
-                type="text"
-                name="movie"
-                placeholder="Movie*"
-              />
-              <input
-                class="text"
-                id="where"
-                type="text"
-                name="where"
-                placeholder="Where to Watch it*"
-              />
-              <input class="submit" type="submit" value="Submit" />
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <form id="movieForm" action="/api/movies" method="get">
-              <h3>User Catalogue</h3>
-              <input class="submit" type="submit" value="View" />
-            </form>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <form>
-              <input class="submit" type="submit" value="Reset" />
-              <code class="code" id="jsonResult"></code>
-            </form>
-          </td>
-        </tr>
-      </table>
+<head>
+  <title>Movie List</title>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/style.css">
+</head>
+
+<script src="/public/client.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<body>
+  <center>
+
+    <div class="night">
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-2.2.1.min.js"
-      integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      $(function() {
-        $("#movieForm").submit(e => {
-          e.preventDefault();
-          $.ajax({
-            url: "/api/movies",
-            type: "get",
-            data: $("#movieForm").serialize(),
-            success: d => {
-              $("#result").text(d.string || d);
-              $("#jsonResult").text(JSON.stringify(d));
-            }
-          });
-        });
-      });
-    </script>
-    </center>
-  </body>  
+
+    <header>
+      <h1>Movies to watch</h1>
+    </header>
+    <br>
+    <div id="movieui">
+      <h2>Enter name and movie</h2>
+
+      <form action="/api/movie" method="post" id="newMovieForm" class="border">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" style="width: 295px">
+        <label for="newMovieToAdd">New Movie</label>
+        <input type="text" id="newMovieToAdd" name="movie" placeholder="Movie" style="width: 295px">
+        <input type="checkbox" name="watched" id="watched" style="width: 295px">
+        <label for="whereToFind">Where</label>
+        <input type="text" id="whereToFind" name="where" placeholder="Where" style="width: 295px">
+        <button type="submit" value="Submit" id="newMovie">Submit New Movie!</button>
+        <code style="color: rgb(172, 190, 189);" id="errResult"></code>
+      </form>
+
+
+      <form style="text-align: left; color: rgb(172, 190, 189);" id="display">
+        <button type="submit" value="Submit">Display</button>
+        <div style="color: rgb(172, 190, 189);" id="movieDetail" class="border">
+          <p style="color: rgb(172, 190, 189);" id="detailMovie">Movie List</p>
+          <ol name="watch" style="text-align: left" id="movieList"></ol>
+          <code style="color: rgb(172, 190, 189);" id="jsonResult"></code>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="night">
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+    </div>
+
+  </center>
+</body>
+
 </html>
