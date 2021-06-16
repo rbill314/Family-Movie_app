@@ -46,7 +46,7 @@
     <div id="movieui">
       <h2>Enter name and movie</h2>
 
-      <form action="/api/movie" method="post" id="newMovieForm" class="border">
+      <form id="newMovieForm" class="border">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Name" style="width: 295px">
         <label for="newMovieToAdd">New Movie</label>
@@ -60,7 +60,7 @@
 
 
       <form style="text-align: left; color: rgb(172, 190, 189);" id="display">
-        <button type="submit" value="Submit">Display</button>
+        <button type="submit" value="Submit" id="movieDisplay">Display</button>
         <div style="color: rgb(172, 190, 189);" id="movieDetail" class="border">
           <p style="color: rgb(172, 190, 189);" id="detailMovie">Movie List</p>
           <ol name="watch" style="text-align: left" id="movieList"></ol>

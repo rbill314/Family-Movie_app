@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
-  $('#newMovieForm').click(() => {
+  $('#newMovieForm').submit((e) => {
+    e.preventDefault();
     $.ajax({
       url: '/api/movie',
       type: 'post',
@@ -11,17 +12,16 @@ $(document).ready(function () {
       }
     });
   });
- 
-    $("#display").submit(e => {
-      e.preventDefault();
-      $.ajax({
-        url: "/api/movie",
-        type: "get",
-        data: $("#display").serialize(),
-        success: d => {
-          $("#result").text(d.string || d);
-          $("#jsonResult").text(JSON.stringify(d));
-        }
-      });
+
+  $("#display").submit(e => {
+    e.preventDefault();
+    $.ajax({
+      url: "/api/movie",
+      type: "get",
+      data: $("#display").serialize(),
+      success: d => {
+        $("#jsonResult").text(JSON.stringify(d));
+      }
     });
   });
+});
