@@ -1,13 +1,13 @@
 'use strict'
-const MoviesTest = require("../models").MoviesTest
+const Movies = require("../models").Movies
 
 module.exports = (app) => {
 
-  app.route('/api/movie')
+  app.route('/api/movies')
 
     .get((req, res) => {
 
-      MoviesTest.find({}, (err, data) => {
+      Movies.find({}, (err, data) => {
         if (!data) {
           res.json({})
         } else {
@@ -16,7 +16,7 @@ module.exports = (app) => {
               name: movies.name,
               movie: movies.movie,
               where: movies.where,
-              watched: ""
+              watched: movies.watched
             }
           })
           res.json(formatData)
@@ -35,14 +35,14 @@ module.exports = (app) => {
         return
       }
 
-      MoviesTest.findOne({
+      Movies.findOne({
         movie: movie
       }, (err, found) => {
         if (err) return
         if (found) {
           res.json("Movie Already In DataBase")          
         } else {
-          let newMovie = new MoviesTest({
+          let newMovie = new Movies({
             name: name,
             movie: movie,
             where: where,

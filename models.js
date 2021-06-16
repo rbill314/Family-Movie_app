@@ -20,6 +20,6 @@ const movieSchema = new mongoose.Schema({
   }
 })
 
-const MoviesTest = mongoose.model("MoviesTest", movieSchema);
+const Movies = mongoose.model("Movies", movieSchema);
 
-exports.MoviesTest = MoviesTest
+exports.Movies = Movies
