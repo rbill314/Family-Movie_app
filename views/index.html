@@ -2,49 +2,50 @@
 <html>
 
 <head>
-  <title>Movie List</title>
-  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta charset="utf-8">
-  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" />
-  <link rel="stylesheet" href="/public/style.css">
+	<title>Movie List</title>
+	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" />
+	<link rel="stylesheet" href="/public/style.css">
 </head>
 
 <!-- <script src="/public/client.js"> -->
 <!-- </script> -->
 <script src="https://code.jquery.com/jquery-3.5.0.js">
+
 </script>
 
 <body>
-  <center>
+	<center>
 
-    <div class="night">
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-      <div class="shooting_star"></div>
-    </div>
+		<div class="night">
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+			<div class="shooting_star"></div>
+		</div>
 
-    <header>
-      <h1>Movies to watch</h1>
-    </header>
-    <br>
+		<header>
+			<h1>Movies to watch</h1>
+		</header>
+		<br>
     <div id="movieui">
       <h2>Enter name and movie</h2>
 
@@ -62,7 +63,9 @@
       </form>
 
       <p style="color: rgb(172, 190, 189);" id="detailMovie">Movie List</p>
+      <div style="color: rgb(172, 190, 189);" id="movieDetail" class="border">
       <div action="/api/movie" method="GET" style="text-align: left; color: rgb(172, 190, 189);" id="display"></div>
+      </div>
 
 
     </div>
