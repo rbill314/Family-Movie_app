@@ -2,53 +2,53 @@
 <html>
 
 <head>
-	<title>Movie List</title>
-	<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta charset="utf-8">
-	<link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" />
-	<link rel="stylesheet" href="/public/style.css">
+  <title>Movie List</title>
+  <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet" />
+  <link rel="stylesheet" href="/public/style.css">
 </head>
 
-<script src="/public/client.js">
-</script>
+<!-- <script src="/public/client.js"> -->
+<!-- </script> -->
 <script src="https://code.jquery.com/jquery-3.5.0.js">
 </script>
 
 <body>
-	<center>
+  <center>
 
-		<div class="night">
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-			<div class="shooting_star"></div>
-		</div>
+    <div class="night">
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+      <div class="shooting_star"></div>
+    </div>
 
-		<header>
-			<h1>Movies to watch</h1>
-		</header>
-		<br>
+    <header>
+      <h1>Movies to watch</h1>
+    </header>
+    <br>
     <div id="movieui">
       <h2>Enter name and movie</h2>
 
-      <form id="newMovieForm" class="border">
+      <form action="/api/movie" method="POST" id="newMovieForm" class="border">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" placeholder="Name" style="width: 295px">
         <label for="newMovieToAdd">New Movie</label>
@@ -57,18 +57,13 @@
         <label for="whereToFind">Where</label>
         <input type="text" id="whereToFind" name="where" placeholder="Where" style="width: 295px">
         <button type="submit" value="Submit" id="newMovie">Submit New Movie!</button>
-        <code style="color: rgb(172, 190, 189);" id="errResult"></code>
+        <br>
+        <code id="errResult"></code>
       </form>
 
+      <p style="color: rgb(172, 190, 189);" id="detailMovie">Movie List</p>
+      <div action="/api/movie" method="GET" style="text-align: left; color: rgb(172, 190, 189);" id="display"></div>
 
-      <form style="text-align: left; color: rgb(172, 190, 189);" id="display">
-        <button type="submit" value="Submit" id="movieDisplay">Display</button>
-        <div style="color: rgb(172, 190, 189);" id="movieDetail" class="border">
-          <p style="color: rgb(172, 190, 189);" id="detailMovie">Movie List</p>
-          <ol name="watch" style="text-align: left" id="movieList"></ol>
-          <code style="color: rgb(172, 190, 189);" id="jsonResult"></code>
-        </div>
-      </form>
 
     </div>
 
@@ -94,6 +89,42 @@
       <div class="shooting_star"></div>
       <div class="shooting_star"></div>
     </div>
+
+    <script>
+      $(document).ready(function () {
+        let items = [];
+        let itemsRaw = [];
+
+        $.getJSON('/api/movie', function (data) {
+          itemsRaw = data;
+          $.each(data, function (i, val) {
+            items.push('<li class="movieList" id="' + i + '">' + val.name +
+              ' - ' + val.movie + ' - ' + val.where + ' - ' + val.watched + '</li>');
+            return (i);
+          });
+          $('<ol/>', {
+            'class': 'listWrapper',
+            html: items.join('')
+          }).appendTo('#display');
+        });
+
+        $("#newMovieForm").submit((e) => {
+          e.preventDefault();
+          $.ajax({
+            url: "/api/movie",
+            type: "POST",
+            dataType: "json",
+            data: $("#newMovieForm").serialize(),
+            success: (d) => {
+              $("form").onsubmit = setTimeout(function () {
+                location.reload(true);
+              }, 15000);
+              $("#errResult").text(JSON.stringify(d));
+            }
+          });
+        });
+      });
+    </script>
 
   </center>
 </body>

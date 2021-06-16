@@ -40,7 +40,7 @@ module.exports = (app) => {
       }, (err, found) => {
         if (err) return
         if (found) {
-          res.json("Movie Already In DataBase")
+          res.json("Movie Already In DataBase")          
         } else {
           let newMovie = new MoviesTest({
             name: name,
