@@ -7,7 +7,7 @@ const movieSchema = new mongoose.Schema({
   },
   movie: {
     type: String,
-    required: false,
+    required: true,
   },
   where: {
     type: String,
