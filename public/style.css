@@ -2,36 +2,21 @@ html {
   height: 100%;
   /* max-height: 600px; */
   width: 1000px;
-  background-color: hsla(200, 40%, 30%, .4);
-  background-image:
-    url('https://78.media.tumblr.com/cae86e76225a25b17332dfc9cf8b1121/tumblr_p7n8kqHMuD1uy4lhuo1_540.png'),
-    url('https://78.media.tumblr.com/66445d34fe560351d474af69ef3f2fb0/tumblr_p7n908E1Jb1uy4lhuo1_1280.png'),
-    url('https://78.media.tumblr.com/8cd0a12b7d9d5ba2c7d26f42c25de99f/tumblr_p7n8kqHMuD1uy4lhuo2_1280.png'),
-    url('https://78.media.tumblr.com/5ecb41b654f4e8878f59445b948ede50/tumblr_p7n8on19cV1uy4lhuo1_1280.png'),
-    url('https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png');
+  background-color: hsla(200, 40%, 30%, 0.4);
+  background-image: url("https://78.media.tumblr.com/cae86e76225a25b17332dfc9cf8b1121/tumblr_p7n8kqHMuD1uy4lhuo1_540.png"),
+    url("https://78.media.tumblr.com/66445d34fe560351d474af69ef3f2fb0/tumblr_p7n908E1Jb1uy4lhuo1_1280.png"),
+    url("https://78.media.tumblr.com/8cd0a12b7d9d5ba2c7d26f42c25de99f/tumblr_p7n8kqHMuD1uy4lhuo2_1280.png"),
+    url("https://78.media.tumblr.com/5ecb41b654f4e8878f59445b948ede50/tumblr_p7n8on19cV1uy4lhuo1_1280.png"),
+    url("https://78.media.tumblr.com/28bd9a2522fbf8981d680317ccbf4282/tumblr_p7n8kqHMuD1uy4lhuo3_1280.png");
   background-repeat: repeat-x;
-  background-position:
-    0 20%,
-    0 100%,
-    0 50%,
-    0 100%,
-    0 0;
-  background-size:
-    2500px,
-    800px,
-    500px 200px,
-    1000px,
-    400px 260px;
+  background-position: 0 20%, 0 100%, 0 50%, 0 100%, 0 0;
+  background-size: 2500px, 800px, 500px 200px, 1000px, 400px 260px;
   animation: 50s para infinite linear;
 }
 
 @keyframes para {
   100% {
-    background-position:
-      -5000px 20%,
-      -800px 95%,
-      500px 50%,
-      1000px 100%,
+    background-position: -5000px 20%, -800px 95%, 500px 50%, 1000px 100%,
       400px 0;
   }
 }
@@ -39,32 +24,34 @@ html {
 body {
   position: absolute;
   /* left: 50%; */
-  top: 50%;
-  height: 100vh;
+  /*top: 50%;*/
+  /*height: 100vh;*/
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
   display: flex;
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
   justify-content: center;
   align-items: center;
 }
 
 h1 {
-  color: rgb(23, 96, 206);
-  margin-top: -100%
+  color: rgb(0, 102, 255);
+  margin-top: auto;
 }
 
 h2 {
-  color: rgb(23, 96, 206);
-  margin-top: 0%
+  color: rgb(0, 102, 255);
+  margin-top: auto;
 }
 
 form {
   padding: 5px;
-  background: linear-gradient(0deg,
-      rgba(34, 193, 195, 1) 0%,
-      rgba(253, 187, 45, 1) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 1) 0%,
+    rgba(253, 187, 45, 1) 100%
+  );
   height: auto;
   border-radius: 5px;
   text-align: center;
@@ -89,14 +76,14 @@ input {
 input[type="submit"] {
   font-size: 16px;
   border-radius: 3px;
-  background-color: #E4F1FE;
+  background-color: #e4f1fe;
   border: 1px solid grey;
   box-shadow: 2px 2px #999;
   cursor: pointer;
 }
 
 input[type="submit"]:hover {
-  background-color: #FFFEC4;
+  background-color: #fffec4;
 }
 
 .border {
@@ -107,10 +94,36 @@ input[type="submit"]:hover {
 
 #movieui {
   max-width: 600px;
-  height: 100vh;
+  /*height: 100vh;*/
 }
 
 label {
   display: block;
   font-weight: bold;
+}
+
+button {
+  padding: 5px 30px;
+  font-size: 15px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: #000000;
+  background-color: #dceadb;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 0px rgb(255, 255, 255);
+}
+
+button:hover {
+  background-color: #e0d510;
+}
+
+button:active {
+  background-color: #e0d510;
+  box-shadow: 10px 5px rgb(45, 107, 206);
+  transform: translateY(4px);
+}
+.hide-specific-sentence{
+  display: none;
 }
